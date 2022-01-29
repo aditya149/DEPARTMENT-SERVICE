@@ -14,4 +14,12 @@ public class DepartmentService {
     public Department saveDepartment(Department user) {
         return departmentRepository.save(user);
     }
+
+    public Department getDepartment(Long departmentId) {
+        //return departmentRepository.getById(departmentId).get();
+        // This is lazy loading gives error returning response back via service.
+        //No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor
+        //Thus go with below
+        return departmentRepository.findById(departmentId).get();
+    }
 }
